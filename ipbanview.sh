@@ -3,11 +3,7 @@
 # IP banned until: date viewer
 # script created by PtrckM
 
-echo "Enter timestamp: "
-read value
-if [ "$value" == ""]
-then
- echo "e.g. 1576671608547"
-else
- echo "IP banned until:" | date -d @$(($value/1000))
-fi
+echo -n "Enter timestamp (e.g. 1576671608547): "
+read $VALUE
+echo -n "IP banned until: "
+date -d @$(($VALUE/1000))
