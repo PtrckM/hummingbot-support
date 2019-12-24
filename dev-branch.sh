@@ -14,7 +14,7 @@ git pull origin development
 git fetch origin
 git branch -a
 # Test branch
-echo "Enter Branch Name: "
+echo -ne "Enter Branch Name: "
 read branch_name
 git checkout $branch_name
 git pull origin $branch_name
