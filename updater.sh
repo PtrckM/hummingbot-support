@@ -12,8 +12,10 @@ function pause() {
 }
 
 echo
-echo "[] -- create or update "
-echo
+echo "[] -- creator or updater docker build hummingbot "
+echo "[] -- modded by: PtrckM v1"
+echo 
+echo "[] -- press enter for default"
 echo
 echo "[] -- Hummingbot version: [latest|development] (default = \"latest\")"
 read TAG
@@ -50,21 +52,31 @@ echo "=> log files:          ├── $PWD/$FOLDER/hummingbot_logs"
 echo "=> data file:          └── $PWD/$FOLDER/hummingbot_data"
 echo
 pause Press [Enter] to continue
+echo
 echo "[] -- creating folders and files"
+echo
 mkdir $FOLDER
 mkdir $FOLDER/hummingbot_conf
 mkdir $FOLDER/hummingbot_logs
 mkdir $FOLDER/hummingbot_data
+echo
 echo "[] -- removing old instance on background"
+echo
 docker rm $INSTANCE_NAME
-echo "[] -- delete old images (y/n)"
+echo
+echo -ne "[] -- delete old images (y/n)"
+echo
 read THE_ANSWER
 if [ "$THE_ANSWER" == "y" ];
 then
 docker rmi coinalpha/hummingbot:$TAG
+echo
 echo "[] -- downloading and installing image.."
+echo
 else
+echo
 echo "[] -- running the image.."
+echo
 fi
 docker run -it \
 --name $INSTANCE_NAME \
