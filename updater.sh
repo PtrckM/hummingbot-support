@@ -1,4 +1,11 @@
 #!/bin/bash
+# 
+# modded by: PtrckM
+# docker build create or update script
+# usage: wget https://raw.githubusercontent.com/PtrckM/hummingbot-support/master/updater.sh
+#        chmod a+x updater.sh
+#        ./updater.sh
+#
 # init
 function pause() {
   read -p "$*"
@@ -48,11 +55,17 @@ mkdir $FOLDER
 mkdir $FOLDER/hummingbot_conf
 mkdir $FOLDER/hummingbot_logs
 mkdir $FOLDER/hummingbot_data
-echo "[] -- removing old instance"
+echo "[] -- removing old instance on background"
 docker rm $INSTANCE_NAME
-echo "[] -- delete old images"
+echo "[] -- delete old images (y/n)"
+read THE_ANSWER
+if [ "$THE_ANSWER" == "y" ];
+then
 docker rmi coinalpha/hummingbot:$TAG
-echo "[] -- downloading and installing new image.."
+echo "[] -- downloading and installing image.."
+else
+echo "[] -- running the image.."
+fi
 docker run -it \
 --name $INSTANCE_NAME \
 --mount "type=bind,source=$(pwd)/$FOLDER/hummingbot_conf,destination=/conf/" \
