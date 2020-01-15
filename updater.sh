@@ -60,6 +60,10 @@ mkdir $FOLDER/hummingbot_conf
 mkdir $FOLDER/hummingbot_logs
 mkdir $FOLDER/hummingbot_data
 echo
+echo "[] -- listing docker instances..."
+echo
+docker ps -a
+echo
 echo "[] -- removing old instance on background"
 echo
 docker rm $INSTANCE_NAME
