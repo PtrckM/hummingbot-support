@@ -24,6 +24,10 @@ then
   TAG="latest"
 fi
 echo
+echo "[] -- listing docker instances..."
+docker ps -a
+echo
+echo
 echo -ne "[] -- enter instance name: (default = \"hummingbot-instance\") >> "
 read INSTANCE_NAME
 if [ "$INSTANCE_NAME" == "" ];
