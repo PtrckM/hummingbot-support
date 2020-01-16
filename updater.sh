@@ -17,14 +17,14 @@ echo "[] -- modded by: PtrckM v1"
 echo 
 echo "[] -- press enter for default"
 echo
-echo "[] -- Hummingbot version: [latest|development] (default = \"latest\")"
+echo -ne "[] -- Hummingbot version: [latest|development] (default = \"latest\") >> "
 read TAG
 if [ "$TAG" == "" ]
 then
   TAG="latest"
 fi
 echo
-echo "[] -- enter instance name: (default = \"hummingbot-instance\")"
+echo -ne "[] -- enter instance name: (default = \"hummingbot-instance\") >> "
 read INSTANCE_NAME
 if [ "$INSTANCE_NAME" == "" ];
 then
@@ -36,7 +36,7 @@ fi
 echo
 echo "=> Instance name: $INSTANCE_NAME"
 echo
-echo "[] -- Enter a folder name: (default = \"$DEFAULT_FOLDER\")"
+echo -ne "[] -- Enter a folder name: (default = \"$DEFAULT_FOLDER\") >> "
 read FOLDER
 if [ "$FOLDER" == "" ]
 then
@@ -53,7 +53,7 @@ echo "=> data file:          └── $PWD/$FOLDER/hummingbot_data"
 echo
 pause Press [Enter] to continue
 echo
-echo "[] -- creating folders and files"
+echo "[] -- creating folders and files..."
 echo
 mkdir $FOLDER
 mkdir $FOLDER/hummingbot_conf
@@ -64,11 +64,11 @@ echo "[] -- listing docker instances..."
 echo
 docker ps -a
 echo
-echo "[] -- removing old instance on background"
+echo "[] -- removing old instance on background..."
 echo
 docker rm $INSTANCE_NAME
 echo
-echo -ne "[] -- delete old images (y/n)"
+echo -ne "[] -- delete old images (y/n) >> "
 echo
 read THE_ANSWER
 if [ "$THE_ANSWER" == "y" ];
