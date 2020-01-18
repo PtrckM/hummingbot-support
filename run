@@ -4,14 +4,14 @@
 # docker build instance run script
 # usage: wget https://raw.githubusercontent.com/PtrckM/hummingbot-support/master/run
 #        chmod a+x run
-#        ./run
+#        ./run instance_name or ./run 69f or ./run
 #
 
 if [[ -z "$@" ]]; then
    echo -ne "\n[] -- listing instance names...\n\n"
-   docker ps -a | awk '{print $NF}'
-   echo -ne "\n[] -- Usage: ./run instance_name\n"
-   echo -ne "[] -- No instance name entered, exiting...\n\n"
+   docker ps -a | awk '{print $1, $NF}'
+   echo -ne "\n[] -- Usage: ./run instance_name or first 3 char of container id\n"
+   echo -ne "[] -- No container id or instance name entered, exiting...\n\n"
    exit 1
 else
    echo -ne "\n[] -- starting instance and attaching to it... >> "
