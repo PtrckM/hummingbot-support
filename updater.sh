@@ -74,7 +74,7 @@ echo "[] -- removing old instance on background..."
 echo
 docker rm $INSTANCE_NAME
 echo
-echo "[] -- if updating choose y if not n..."
+echo "[] -- if updating image choose y if just recreating new instance choose n..."
 echo -ne "[] -- delete old images (y/n) >> "
 read THE_ANSWER
 echo
