@@ -17,11 +17,13 @@ echo "[] -- modded by: PtrckM v1"
 echo 
 echo "[] -- press enter for default"
 echo
-echo -ne "[] -- Hummingbot version: [latest|development] (default = \"latest\") >> "
+echo -ne "[] -- Hummingbot version: [latest|dev] (default = \"latest\") >> "
 read TAG
 if [ "$TAG" == "" ]
-then
+ then
   TAG="latest"
+ else 
+  TAG="development"
 fi
 echo
 echo "[] -- listing docker instances..."
@@ -72,6 +74,7 @@ echo "[] -- removing old instance on background..."
 echo
 docker rm $INSTANCE_NAME
 echo
+echo "[] -- if updating choose y if not n..."
 echo -ne "[] -- delete old images (y/n) >> "
 echo
 read THE_ANSWER
