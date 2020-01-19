@@ -76,8 +76,8 @@ docker rm $INSTANCE_NAME
 echo
 echo "[] -- if updating choose y if not n..."
 echo -ne "[] -- delete old images (y/n) >> "
-echo
 read THE_ANSWER
+echo
 if [ "$THE_ANSWER" == "y" ];
 then
 docker rmi coinalpha/hummingbot:$TAG
