@@ -3,15 +3,23 @@
 # IP banned until: date viewer
 # script created by PtrckM
 #
-# how to use:
-# wget https://github.com/PtrckM/hummingbot-support/raw/master/ipbanview.sh
-# chmod a+x ipbanview.sh
-# ./ipbanview.sh
+# usage: wget https://raw.githubusercontent.com/PtrckM/hummingbot-support/master/ipbanview.sh
+#        chmod a+x run
+#        ./ipbanview.sh or ./ipbanview.sh 1576671608547
+#
 
-echo -en "\nEnter timestamp (e.g. 1576671608547) ==> "
-read timestamp
-echo -ne "IP banned until ==> "
-date -d @$(($timestamp/1000))
-echo ""
-exit
-
+if [[ -z "$@" ]]; then
+   echo -ne "\n[*] -- IP banned until: date viewer..."
+   echo -ne "\n[*] -- Usage: ./ipbanview.sh or ./ipbanview.sh 1576671608547\n\n"
+   echo -ne "[*] -- Enter timestamp >> "
+   read timestamp
+   echo -ne "[*] -- IP banned until ==> "
+   date -d @$(($timestamp/1000))
+   echo ""
+   exit 1
+else
+   echo -ne "\n[*] -- IP banned until ==> "
+   date -d @$(($@/1000))
+   echo ""
+   exit 1
+fi
