@@ -27,7 +27,7 @@ if [ "$TAG" == "" ]
 fi
 echo
 echo "[] -- listing docker instances..."
-docker ps -a
+docker ps -a | awk '{print $NF}'
 echo
 echo
 echo -ne "[] -- enter instance name: (default = \"hummingbot-instance\") >> "
@@ -68,7 +68,7 @@ mkdir $FOLDER/hummingbot_data
 echo
 echo "[] -- listing docker instances..."
 echo
-docker ps -a
+docker ps -a | awk '{print $NF}'
 echo
 echo "[] -- removing old instance on background..."
 echo
