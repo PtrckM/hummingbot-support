@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # created by: PtrckM
-# docker build instance run script
+# convert python decimal to decimal value
 # usage: wget https://raw.githubusercontent.com/PtrckM/hummingbot-support/master/convert_dec
 #        chmod a+x convert_dec
 #        ./convert_dec 2e-4 or ./convert_dec
