@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# created by: PtrckM
+# docker build instance run script
+# usage: wget https://raw.githubusercontent.com/PtrckM/hummingbot-support/master/convert_dec
+#        chmod a+x convert_dec
+#        ./convert_dec 2e-4 or ./convert_dec
+#
+
+if [[ -z "$@" ]]; then
+   echo -ne "\n[*] -- python decimal to decimal converter\n"
+   echo "[*] -- created by: PtrckM v1"
+   echo -ne "\n[*] -- Usage: ./convert_dec 2e-4 or ./convert_dec\n\n"
+   echo -ne "[-] -- Enter python decimal >> "
+   read CONVRT
+   NUMM=`echo "$CONVRT" | awk -v FPAT="[0-9]+" '{print $NF}'`
+   printf '[*] -- output >> %.'$NUMM'f\n\n' "$CONVRT"
+   exit 1
+else
+   echo -ne "\n[*] -- python decimal to decimal converter\n"
+   NUMM=`echo "$@" | awk -v FPAT="[0-9]+" '{print $NF}'`
+   printf '[*] -- output >> %.'"$NUMM"'f\n\n' "$@"
+   exit 1
+fi
