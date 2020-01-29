@@ -2,7 +2,9 @@
 rem Reset Password for hummingbot windows binary
 rem created by: PtrckM
 rem 
-rem usage: download file https://raw.githubusercontent.com/PtrckM/hummingbot-support/master/resethbpass.bat
+rem download page https://raw.githubusercontent.com/PtrckM/hummingbot-support/master/resethbpass.bat
+rem usage: curl -o resethbpass.bat https://raw.githubusercontent.com/PtrckM/hummingbot-support/master/resethbpass.bat
+rem        resethbpass.bat
 rem
 cls
 echo.
