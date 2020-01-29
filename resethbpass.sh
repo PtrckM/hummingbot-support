@@ -11,7 +11,7 @@
 echo -ne "\n[*] -- Reset Password - HB docker build v1\n"
 echo "[-] "
 echo "[*] -- Warning: This will delete encrypted api+key+secret files and wallet keyfiles."
-echo "[*] --          Created wallet thru hummingbot will lose and cannot be used again,"
+echo "[*] --          Created wallet thru hummingbot will be lost and cannot be used again,"
 echo "[*] --          you have been warned..."
 echo "[-] "
 echo -ne "[*] -- listing docker names...\n\n"
