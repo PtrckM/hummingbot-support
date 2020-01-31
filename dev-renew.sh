@@ -17,9 +17,9 @@ rm -rf $(pwd)/miniconda3/envs/hummingbot
 mv $hummingbotPath/conf /tmp/conf
 rm -rf $(pwd)/hummingbot
 git clone https://github.com/CoinAlpha/hummingbot.git
+cd $hummingbotPath
 git pull origin development
 git fetch origin
-cd $hummingbotPath
 ./install
 ${CONDAPATH}/bin/activate hummingbot
 ./compile
