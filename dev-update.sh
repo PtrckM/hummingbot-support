@@ -5,28 +5,34 @@
 #        chmod a+x dev-update.sh
 #       ./dev-update.sh
 
-echo -ne "\n[] - setting up configurations...\n"
+echo -ne "\n[*] - setting up configurations...\n"
 export CONDAPATH="$(pwd)/miniconda3"
 export PYTHON="$(pwd)/miniconda3/envs/hummingbot/bin/python3"
-export hummingbotPath="$(pwd)/hummingbot" && cd $hummingbotPath
-echo -ne "\n[] - deactivating conda hummingbot...\n"
+export hummingbotPath="$(pwd)/hummingbot"
+echo -ne "\n[*] - deactivating conda hummingbot...\n"
 ${CONDAPATH}/bin/deactivate
-echo -ne "\n[] - removing old environments...\n"
+${CONDAPATH}/bin/deactivate
+${CONDAPATH}/bin/deactivate
+${CONDAPATH}/bin/activate
+${CONDAPATH}/bin/activate hummingbot
+${CONDAPATH}/bin/deactivate
+cd $hummingbotPath
+echo -ne "\n[*] - removing old environments...\n"
 rm -rf $(pwd)/miniconda3/envs/hummingbot
-echo -ne "\n[] - uninstalling...\n"
+echo -ne "\n[*] - uninstalling...\n"
 ./uninstall
-echo -ne "\n[] - housekeeping...\n"
+echo -ne "\n[*] - housekeeping...\n"
 ./clean
-echo -ne "\n[] - downloading development...\n"
+echo -ne "\n[*] - downloading development...\n"
 git pull origin development
-echo -ne "\n[] - switching...\n"
+echo -ne "\n[*] - switching...\n"
 git fetch origin
-echo -ne "\n[] - installing...\n"
+echo -ne "\n[*] - installing...\n"
 ./install
 ${CONDAPATH}/bin/activate hummingbot
-echo -ne "\n[] - compiling...\n"
+echo -ne "\n[*] - compiling...\n"
 ./compile
-echo -ne "\n[] - starting...\n"
+echo -ne "\n[*] - starting...\n"
 ${PYTHON} bin/hummingbot.py
 
 
