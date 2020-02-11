@@ -8,13 +8,13 @@
 #
 
 if [[ -z "$@" ]]; then
-   echo -ne "\n[] -- listing cointainer and instance names...\n\n"
+   echo -ne "\n[*] -- listing cointainer and instance names...\n\n"
    docker ps -a | awk '{print $1, $NF}'
-   echo -ne "\n[] -- Usage: ./run instance_name or first 3 char of container id\n"
-   echo -ne "[] -- No container id or instance name entered, exiting...\n\n"
+   echo -ne "\n[*] -- Usage: ./run instance_name or first 3 char of container id\n"
+   echo -ne "[*] -- No container id or instance name entered, exiting...\n\n"
    exit 1
 else
-   echo -ne "\n[] -- loading instance and attaching to it... >> "
+   echo -ne "\n[*] -- loading instance and attaching to it... >> "
    docker start $@ && docker attach $@
    exit 1
 fi
