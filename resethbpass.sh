@@ -27,7 +27,7 @@ if [ "$ANSWER" == "y" ];
 then
 echo "[*] -- deleting files..."
 rm -f $INSTANCER/hummingbot_conf/encrypted* $INSTANCER/hummingbot_conf/key_file*
-echo "[*] -- operation success, password has been reset..."
+echo "[+] -- operation success, password has been reset..."
 exit
 else
 echo -ne "[!] -- operation aborted... exiting!\n\n"
