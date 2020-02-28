@@ -11,14 +11,14 @@
 if [[ -z "$@" ]]; then
    echo -ne "\n[*] -- IP banned until: date viewer..."
    echo -ne "\n[*] -- Usage: ./ipbanview.sh or ./ipbanview.sh 1576671608547\n\n"
-   echo -ne "[*] -- Enter timestamp >> "
+   echo -ne "[-] -- Enter timestamp >> "
    read timestamp
    echo -ne "[*] -- IP banned until ==> "
    date -d @$(($timestamp/1000))
    echo ""
    exit 1
 else
-   echo -ne "\n[*] -- IP banned until ==> "
+   echo -ne "\n[+] -- IP banned until ==> "
    date -d @$(($@/1000))
    echo ""
    exit 1
