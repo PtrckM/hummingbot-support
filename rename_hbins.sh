@@ -17,7 +17,7 @@ echo -ne "[-] -- Enter new instance name >> "
 read INST2
 echo -ne "[-] -- Enter release version (development | latest) >> "
 read TAG
-echo -ne "[*] -- renaming instance from $INST1 to $INST2 ...\n"
+echo -ne "[+] -- renaming instance from $INST1 to $INST2 ...\n"
 docker rename $INST1 $INST2
 echo -ne "[*] -- stopping new instance ... "
 docker rm $INST2
@@ -25,7 +25,7 @@ echo -ne "[*] -- moving folders and mounts ...\n"
 FOLD1=${INST1}_files
 FOLD2=${INST2}_files
 mv $FOLD1 $FOLD2
-echo -ne "[*] -- launching the new instance...\n"
+echo -ne "[+] -- launching the new instance...\n"
 docker run -it \
 --name $INST2 \
 --mount "type=bind,source=$(pwd)/$FOLD2/hummingbot_conf,destination=/conf/" \
