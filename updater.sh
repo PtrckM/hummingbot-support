@@ -68,11 +68,19 @@ mkdir $FOLDER/hummingbot_data
 echo
 echo "[*] -- listing docker instances..."
 echo
-docker ps -a | awk '{print $NF}'
+#docker ps -a | awk '{print $NF}'
+docker ps -a --filter ancestor=coinalpha/hummingbot:$TAG
 echo
-echo "[*] -- removing old instance on background..."
+echo "[*] -- removing old instance/s on background..."
 echo
-docker rm $(docker ps -a --filter ancestor=coinalpha/hummingbot:$TAG)
+
+if [ "$TAG" == "latest" ]
+ then
+  docker rm $(docker ps -a --filter ancestor=coinalpha/hummingbot:latest)
+ else 
+  docker rm $(docker ps -a --filter ancestor=coinalpha/hummingbot:development)
+fi
+
 echo
 echo "[*] -- if updating image choose y if just recreating new instance choose n..."
 echo -ne "[*] -- delete old images (y/n) >> "
