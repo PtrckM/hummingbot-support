@@ -72,7 +72,7 @@ docker ps -a | awk '{print $NF}'
 echo
 echo "[*] -- removing old instance on background..."
 echo
-docker rm $INSTANCE_NAME
+docker rm $(docker ps -a --filter ancestor=coinalpha/hummingbot:$TAG)
 echo
 echo "[*] -- if updating image choose y if just recreating new instance choose n..."
 echo -ne "[*] -- delete old images (y/n) >> "
