@@ -73,14 +73,7 @@ docker ps -a --filter ancestor=coinalpha/hummingbot:$TAG
 echo
 echo "[*] -- removing old instance/s on background..."
 echo
-
-if [ "$TAG" == "latest" ]
- then
-  docker rm $(docker ps -a --filter ancestor=coinalpha/hummingbot:latest)
- else 
-  docker rm $(docker ps -a --filter ancestor=coinalpha/hummingbot:development)
-fi
-
+docker ps -a | grep "$TAG" | awk '{print $1}' | xargs docker rm
 echo
 echo "[*] -- if updating image choose y if just recreating new instance choose n..."
 echo -ne "[*] -- delete old images (y/n) >> "
