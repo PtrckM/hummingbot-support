@@ -13,7 +13,8 @@ function pause() {
 
 echo
 echo "[*] -- creator or updater docker build hummingbot "
-echo "[*] -- modded by: PtrckM v1"
+echo "[*] -- Warning: this will stop and remove instance with same tag image (multi-bots)
+echo "[*] -- modded by: PtrckM v2"
 echo 
 echo "[*] -- press enter for default"
 echo
@@ -66,12 +67,13 @@ mkdir $FOLDER/hummingbot_conf
 mkdir $FOLDER/hummingbot_logs
 mkdir $FOLDER/hummingbot_data
 echo
-echo "[*] -- listing docker instances..."
+echo "[*] -- stopping docker instances with $tag image..."
 echo
-#docker ps -a | awk '{print $NF}'
+docker ps -a | grep "$TAG" | awk '{print $1}' | xargs docker stop
+echo
 docker ps -a --filter ancestor=coinalpha/hummingbot:$TAG
 echo
-echo "[*] -- removing old instance/s on background..."
+echo "[*] -- removing old instance/s on background with $tag image..."
 echo
 docker ps -a | grep "$TAG" | awk '{print $1}' | xargs docker rm
 echo
