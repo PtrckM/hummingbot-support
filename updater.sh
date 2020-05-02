@@ -20,12 +20,15 @@ echo "[*] -- press enter for default"
 echo
 echo -ne "[*] -- Hummingbot version: [latest|dev] (default = \"latest\") >> "
 read TAG
-if [ "$TAG" == "" ]
- then
-  TAG="latest"
- else 
-  TAG="development"
-fi
+ if [[ "$TAG" == "" || "$TAG" == "latest" ]]
+  then
+   TAG="latest"
+  else
+   if [[ "$TAG" == "development" || "$TAG" == "dev" ]]
+    then
+   TAG="development"
+   fi
+ fi
 echo
 echo "[*] -- listing docker instances..."
 docker ps -a | awk '{print $NF}'
