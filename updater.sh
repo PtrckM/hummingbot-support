@@ -13,21 +13,18 @@ function pause() {
 
 echo
 echo "[*] -- creator or updater docker build hummingbot "
-echo "[*] -- Warning: this will stop and remove instance with same tag image (multi-bots)
-echo "[*] -- modded by: PtrckM v2"
+echo "[*] -- modded by: PtrckM v1"
 echo 
 echo "[*] -- press enter for default"
 echo
 echo -ne "[*] -- Hummingbot version: [latest|dev] (default = \"latest\") >> "
 read TAG
-
 if [ "$TAG" == "" ]
  then
   TAG="latest"
- else
+ else 
   TAG="development"
 fi
-
 echo
 echo "[*] -- listing docker instances..."
 docker ps -a | awk '{print $NF}'
@@ -59,6 +56,7 @@ echo "=> instance folder:    $PWD/$FOLDER"
 echo "=> config files:       ├── $PWD/$FOLDER/hummingbot_conf"
 echo "=> log files:          ├── $PWD/$FOLDER/hummingbot_logs"
 echo "=> data file:          └── $PWD/$FOLDER/hummingbot_data"
+echo "=> scripts files:      └── $PWD/$FOLDER/hummingbot_scripts"
 echo
 pause Press [Enter] to continue
 echo
@@ -68,14 +66,14 @@ mkdir $FOLDER
 mkdir $FOLDER/hummingbot_conf
 mkdir $FOLDER/hummingbot_logs
 mkdir $FOLDER/hummingbot_data
+mkdir $FOLDER/hummingbot_scripts
 echo
-echo "[*] -- stopping docker instances with $tag image..."
+echo "[*] -- listing docker instances..."
 echo
-docker ps -a | grep "$TAG" | awk '{print $1}' | xargs docker stop
-echo
+#docker ps -a | awk '{print $NF}'
 docker ps -a --filter ancestor=coinalpha/hummingbot:$TAG
 echo
-echo "[*] -- removing old instance/s on background with $tag image..."
+echo "[*] -- removing old instance/s on background..."
 echo
 docker ps -a | grep "$TAG" | awk '{print $1}' | xargs docker rm
 echo
@@ -94,9 +92,11 @@ echo
 echo "[*] -- running the image.."
 echo
 fi
-docker run -it --log-opt max-size=10m --log-opt max-file=5 --network host \
+docker run -it --log-opt max-size=10m --log-opt max-file=5 \
+--network host \
 --name $INSTANCE_NAME \
 --mount "type=bind,source=$(pwd)/$FOLDER/hummingbot_conf,destination=/conf/" \
 --mount "type=bind,source=$(pwd)/$FOLDER/hummingbot_logs,destination=/logs/" \
 --mount "type=bind,source=$(pwd)/$FOLDER/hummingbot_data,destination=/data/" \
+--mount "type=bind,source=$(pwd)/$FOLDER/hummingbot_scripts,destination=/scripts/" \
 coinalpha/hummingbot:$TAG
