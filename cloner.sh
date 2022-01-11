@@ -3,8 +3,9 @@
 # this script will download the repo and install its own conda environment
 #
 
-
-read -p "Enter which repo to clone [coinalpha, foundation] (default = \"coinalpha\") >>> " REPO
+echo ""
+echo "coinalpha\humminbot | hummingbot\hummingbot (foundation)"
+read -p "Enter which repo to clone [coinalpha, hummingbot] (default = \"coinalpha\") >>> " REPO
 if [ "$REPO" == "" ]
 then
   REPO="coinalpha"
