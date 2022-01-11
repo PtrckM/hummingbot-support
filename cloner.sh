@@ -26,6 +26,8 @@ else
         sed -i 's/name: hummingbot/name: $ENV_NAME/g' $foldername/setup/environment-win64.yml
 fi
 
+sed -i 's/hummingbot/$ENV_NAME/g' $foldername/uninstall
+
 cd $foldername
 ./install
 conda activate $ENV_NAME
