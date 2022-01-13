@@ -3,6 +3,8 @@
 # Hummingbot Clint Cloner v1.0
 # this script will download the repo and install its own conda environment
 # created by: Patrick
+#
+# Requirements: installed conda
 
 cd $(dirname $0)
 
