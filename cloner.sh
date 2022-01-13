@@ -74,7 +74,16 @@ echo ""
 echo "[+] Compiling now... please wait 3-5mins (depends on your machine)"
 cd $FOLDER
 ./compile &>/dev/null
+
 echo ""
-echo "[i] Done... "
+echo "[i] Listing summary setup"
+echo ""
+echo "    Repo: https://github.com/$REPO/hummingbot"
+echo "    Branch: $BRANCH"
+echo "    Environment name: $ENV_NAME"
+echo "    Working directory: $FOLDER"
+echo ""
+echo "[i] All work are done... enjoy hunting bugs!!! \m/"
+echo ""
 echo "[i] Please enter: cd $FOLDER && conda activate $ENV_NAME && bin/hummingbot.py"
 echo ""
