@@ -47,7 +47,7 @@ echo "[+] Started working... please wait"
 git clone -b $BRANCH https://github.com/$REPO/hummingbot $FOLDER -q
 echo ""
 
-read -p "[-] Enter name of envinronment >>> " ENV_NAME
+read -p "[-] Enter name of environment >>> " ENV_NAME
 echo ""
 echo "[+] updating env files..."
 
