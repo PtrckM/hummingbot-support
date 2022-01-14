@@ -47,9 +47,14 @@ echo "[+] Started working... please wait"
 git clone -b $BRANCH https://github.com/$REPO/hummingbot $FOLDER -q
 echo ""
 
-read -p "[-] Enter name of environment >>> " ENV_NAME
+read -p "[-] Enter name of environment (default = \"hummingbot\") >>> " ENV_NAME
+if [ "$ENV_NAME" == "" ]
+then
+  ENV_NAME="hummingbot"
+fi
+
 echo ""
-echo "[+] updating env files..."
+echo "[+] setting env name..."
 
  sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment.yml
  sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment-linux.yml
