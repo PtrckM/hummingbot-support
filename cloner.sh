@@ -43,6 +43,12 @@ then
             FOLDER=$PWD/$FOLDER
 fi
 
+read -p "[-] Enter name of environment (default = \"hummingbot\") >>> " ENV_NAME
+if [ "$ENV_NAME" == "" ]
+then
+  ENV_NAME="hummingbot"
+fi
+
 work_start1=$SECONDS
 
 echo ""
@@ -51,12 +57,6 @@ git clone -b $BRANCH https://github.com/$REPO/hummingbot $FOLDER -q
 work_end1=$SECONDS
 echo "[i] Download took $((work_end1-work_start1)) seconds."
 echo ""
-
-read -p "[-] Enter name of environment (default = \"hummingbot\") >>> " ENV_NAME
-if [ "$ENV_NAME" == "" ]
-then
-  ENV_NAME="hummingbot"
-fi
 
 echo ""
 echo "[+] setting env name..."
