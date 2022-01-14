@@ -42,9 +42,14 @@ then
   elif [[ ${FOLDER::1} != "/" ]]; then
             FOLDER=$PWD/$FOLDER
 fi
+
+work_start1=$SECONDS
+
 echo ""
 echo "[+] Started working... please wait"
 git clone -b $BRANCH https://github.com/$REPO/hummingbot $FOLDER -q
+work_end1=$SECONDS
+echo "[i] Download took $((work_end1-work_start1)) seconds."
 echo ""
 
 read -p "[-] Enter name of environment (default = \"hummingbot\") >>> " ENV_NAME
@@ -63,11 +68,14 @@ echo "[+] setting env name..."
  sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/install
  sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/uninstall
 
+work_start2=$SECONDS
 cd $FOLDER
 echo ""
 echo "[i] Installing dependencies to: $ENV_NAME"
 echo "[+] Please wait... it may take awhile (depends on your internet)"
 ./install &>/dev/null
+work_end2=$SECONDS
+echo "[i] Installation took $((work_end2-work_start2)) seconds."
 
 echo ""
 echo "[i] Successfully created... listing your environment"
@@ -78,9 +86,12 @@ echo "[+] Activating your environment!"
 source "${CONDA_BIN}/activate" $ENV_NAME
 echo ""
 
+work_start3=$SECONDS
 echo "[+] Compiling now... please wait 3-5mins (depends on your machine)"
 cd $FOLDER
 ./compile &>/dev/null
+work_end3=$SECONDS
+echo "[i] Compiling took $((work_end3-work_start3)) seconds."
 
 echo ""
 echo "[i] Listing summary setup"
