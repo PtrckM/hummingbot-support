@@ -5,6 +5,10 @@
 # created by: Patrick
 #
 # Requirements: installed conda
+# usage: wget https://raw.githubusercontent.com/PtrckM/hummingbot-support/master/cloner.sh
+#        chmod +x cloner.sh
+#        ./cloner.sh
+#
 
 cd $(dirname $0)
 
