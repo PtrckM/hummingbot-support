@@ -71,8 +71,7 @@ work_start2=$SECONDS
 cd $FOLDER
 echo ""
 echo "[i] Installing dependencies to: $ENV_NAME"
-echo "[+] Please wait... it may take awhile (depends on your internet)"
-./install &>/dev/null
+echo -ne "[+] Please wait... it may take awhile (depends on your internet): " && ./install &>/dev/null && echo "DONE"
 work_end2=$SECONDS
 echo "[i] Installation completed, took $((work_end2-work_start2)) seconds."
 
