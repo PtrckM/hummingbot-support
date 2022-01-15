@@ -52,26 +52,29 @@ fi
 work_start1=$SECONDS
 
 echo ""
-echo "[+] Started working... please wait"
+echo -ne "[+] Started working... please wait. "
 git clone -b $BRANCH https://github.com/$REPO/hummingbot $FOLDER -q
+tput setaf 2; echo "DONE"; tput sgr0
 work_end1=$SECONDS
 echo "[i] Download completed, took $((work_end1-work_start1)) seconds."
 echo ""
 
-echo "[+] setting env name..."
-
- sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment.yml
- sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment-linux.yml
- sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment-linux-aarch64.yml
- sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment-win64.yml
- sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/install
- sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/uninstall
+echo -ne "[+] setting up env name... "
+sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment.yml
+sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment-linux.yml
+sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment-linux-aarch64.yml
+sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment-win64.yml
+sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/install
+sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/uninstall
+tput setaf 2; echo "UPDATED"; tput sgr0
 
 work_start2=$SECONDS
 cd $FOLDER
 echo ""
-echo "[i] Installing dependencies to: $ENV_NAME"
-echo -ne "[+] Please wait... it may take awhile (depends on your internet): " && ./install &>/dev/null && echo "DONE"
+echo "[i] Installing dependencies to $ENV_NAME"
+echo -ne "[+] Please wait... it may take awhile (depends on your internet). "
+./install &>/dev/null
+tput setaf 2; echo "DONE"; tput sgr0
 work_end2=$SECONDS
 echo "[i] Installation completed, took $((work_end2-work_start2)) seconds."
 
@@ -80,14 +83,16 @@ echo "[i] Successfully created... listing your environment"
 conda env list | grep $ENV_NAME
 
 echo ""
-echo "[+] Activating your environment!"
+echo -ne "[+] Activating your environment! "
 source "${CONDA_BIN}/activate" $ENV_NAME
+tput setaf 2; echo "OK"; tput sgr0
 echo ""
 
 work_start3=$SECONDS
-echo "[+] Compiling now... please wait 3-15mins (depends on your machine)"
+echo -ne "[+] Compiling now... please wait 3-15mins (depends on your machine). "
 cd $FOLDER
 ./compile &>/dev/null
+tput setaf 2; echo "DONE"; tput sgr0
 work_end3=$SECONDS
 echo "[i] Compiling completed, took $((work_end3-work_start3)) seconds."
 
