@@ -55,6 +55,8 @@ fi
 
 ############################################################################################################
 # spinner sniff - start
+# thanks to https://github.com/tlatsas/bash-spinner 
+# mod to work on both mac and linux (zsh/bash/sh)
 
 function _spinner() {
 
