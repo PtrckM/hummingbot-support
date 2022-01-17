@@ -147,8 +147,8 @@ sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment-l
 sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment-win64.yml
 sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/install
 sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/uninstall
+sleep 2
 stop_spinner $?
-#tput setaf 2; echo "UPDATED"; tput sgr0
 
 work_start2=$SECONDS
 cd $FOLDER
@@ -156,7 +156,6 @@ echo ""
 echo "[i] Installing dependencies to $ENV_NAME"
 start_spinner '[+] Please wait... it may take awhile (depends on your internet). '
 ./install &>/dev/null
-#tput setaf 2; echo "DONE"; tput sgr0
 work_end2=$SECONDS
 stop_spinner $?
 echo "[i] Installation completed, took $((work_end2-work_start2)) seconds."
@@ -175,7 +174,6 @@ work_start3=$SECONDS
 start_spinner '[+] Compiling now... please wait 3-15mins (depends on your machine). '
 cd $FOLDER
 ./compile &>/dev/null
-#tput setaf 2; echo "DONE"; tput sgr0
 work_end3=$SECONDS
 stop_spinner $?
 echo "[i] Compiling completed, took $((work_end3-work_start3)) seconds."
