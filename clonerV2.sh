@@ -28,7 +28,7 @@ fi
 CONDA_BIN=$(dirname ${CONDA_EXE})
 
 echo ""
-echo "[i] Hummingbot Client Cloner (branch+custom env) v1.0"
+echo "[i] Hummingbot Client Cloner (branch+custom env) v2.0"
 echo ""
 read -p "[-] Enter which repo to clone [coinalpha, hummingbot] (default = \"coinalpha\") >>> " REPO
 if [ "$REPO" == "" ]
