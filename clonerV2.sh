@@ -61,10 +61,6 @@ function _spinner() {
     # using tput to set colors
     local on_success="DONE"
     local on_fail="FAIL"
-#    local white="\e[1;37m"
-#    local green="\e[1;32m"
-#    local red="\e[1;31m"
-#    local nc="\e[0m"
     local white="tput setaf 7;"
     local green="tput setaf 2;"
     local red="tput setaf 1;"
@@ -97,9 +93,9 @@ function _spinner() {
             # inform the user uppon success or failure
             echo -en "\b["
             if [[ $2 -eq 0 ]]; then
-                echo -en "${green}${on_success}${nc}"
+                tput setaf 2; echo -en "${on_success}";tput sgr0
             else
-                echo -en "${red}${on_fail}${nc}"
+                tput setaf 1; echo -en "${on_fail}";tput sgr0
             fi
             echo -e "]"
             ;;
@@ -135,7 +131,7 @@ echo ""
 start_spinner '[+] Started working... please wait. '
 git clone -b $BRANCH https://github.com/$REPO/hummingbot $FOLDER -q
 work_end1=$SECONDS
-stop_spinner $?; tput sgr0
+stop_spinner $?
 echo "[i] Download completed, took $((work_end1-work_start1)) seconds."
 echo ""
 
@@ -147,7 +143,7 @@ sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment-w
 sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/install
 sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/uninstall
 sleep 2
-stop_spinner $?; tput sgr0
+stop_spinner $?
 
 work_start2=$SECONDS
 cd $FOLDER
@@ -156,7 +152,7 @@ echo "[i] Installing dependencies to $ENV_NAME"
 start_spinner '[+] Please wait... it may take awhile (depends on your internet). '
 ./install &>/dev/null
 work_end2=$SECONDS
-stop_spinner $?; tput sgr0
+stop_spinner $?
 echo "[i] Installation completed, took $((work_end2-work_start2)) seconds."
 
 echo ""
@@ -174,7 +170,7 @@ start_spinner '[+] Compiling now... please wait 3-15mins (depends on your machin
 cd $FOLDER
 ./compile &>/dev/null
 work_end3=$SECONDS
-stop_spinner $?; tput sgr0
+stop_spinner $?
 echo "[i] Compiling completed, took $((work_end3-work_start3)) seconds."
 
 echo ""
