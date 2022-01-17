@@ -57,18 +57,23 @@ fi
 # spinner sniff - start
 
 function _spinner() {
-    # $1 start/stop
-    #
-    # on start: $2 display message
-    # on stop : $2 process exit status
-    #           $3 spinner function pid (supplied from stop_spinner)
+
+    # using tput to set colors
+    t_white="tput setaf 7"
+    t_green="tput setaf 2"
+    t_red="tput setaf 1"
+    t_nc="tput setaf 6"
 
     local on_success="DONE"
     local on_fail="FAIL"
-    local white="\e[1;37m"
-    local green="\e[1;32m"
-    local red="\e[1;31m"
-    local nc="\e[0m"
+#    local white="\e[1;37m"
+#    local green="\e[1;32m"
+#    local red="\e[1;31m"
+#    local nc="\e[0m"
+    local white="$t_white"
+    local green="$t_green"
+    local red="$t_red"
+    local nc="$t_nc"
 
     case $1 in
         start)
@@ -134,9 +139,8 @@ work_start1=$SECONDS
 echo ""
 start_spinner '[+] Started working... please wait. '
 git clone -b $BRANCH https://github.com/$REPO/hummingbot $FOLDER -q
-#tput setaf 2; echo "DONE"; tput sgr0
 work_end1=$SECONDS
-stop_spinner $?
+stop_spinner $?; tput sgr0
 echo "[i] Download completed, took $((work_end1-work_start1)) seconds."
 echo ""
 
@@ -148,7 +152,7 @@ sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment-w
 sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/install
 sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/uninstall
 sleep 2
-stop_spinner $?
+stop_spinner $?; tput sgr0
 
 work_start2=$SECONDS
 cd $FOLDER
@@ -157,7 +161,7 @@ echo "[i] Installing dependencies to $ENV_NAME"
 start_spinner '[+] Please wait... it may take awhile (depends on your internet). '
 ./install &>/dev/null
 work_end2=$SECONDS
-stop_spinner $?
+stop_spinner $?; tput sgr0
 echo "[i] Installation completed, took $((work_end2-work_start2)) seconds."
 
 echo ""
@@ -175,7 +179,7 @@ start_spinner '[+] Compiling now... please wait 3-15mins (depends on your machin
 cd $FOLDER
 ./compile &>/dev/null
 work_end3=$SECONDS
-stop_spinner $?
+stop_spinner $?; tput sgr0
 echo "[i] Compiling completed, took $((work_end3-work_start3)) seconds."
 
 echo ""
