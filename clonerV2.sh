@@ -59,21 +59,16 @@ fi
 function _spinner() {
 
     # using tput to set colors
-    t_white="tput setaf 7"
-    t_green="tput setaf 2"
-    t_red="tput setaf 1"
-    t_nc="tput setaf 6"
-
     local on_success="DONE"
     local on_fail="FAIL"
 #    local white="\e[1;37m"
 #    local green="\e[1;32m"
 #    local red="\e[1;31m"
 #    local nc="\e[0m"
-    local white="$t_white"
-    local green="$t_green"
-    local red="$t_red"
-    local nc="$t_nc"
+    local white="tput setaf 7;"
+    local green="tput setaf 2;"
+    local red="tput setaf 1;"
+    local nc="tput setaf 6;"
 
     case $1 in
         start)
