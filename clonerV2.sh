@@ -5,6 +5,7 @@
 # created by: Patrick
 #
 # Requirements: installed conda
+# Tested on: macos (intel), windows 10 (gitbash, WSL2), aws linux (ubuntu 16.04, 18.04, 20.04)
 # usage: wget https://raw.githubusercontent.com/PtrckM/hummingbot-support/master/clonerV2.sh
 #        chmod +x clonerV2.sh
 #        ./clonerV2.sh
