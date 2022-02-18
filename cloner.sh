@@ -138,6 +138,16 @@ stop_spinner $?
 echo "[i] Download completed, took $((work_end1-work_start1)) seconds."
 echo ""
 
+# backup files
+mkdir -p $FOLDER/conf/backup/orig/
+mkdir -p $FOLDER/conf/backup/mod/
+cp $FOLDER/setup/environment.yml $FOLDER/conf/backup/orig/environment.yml
+cp $FOLDER/setup/environment-linux.yml $FOLDER/conf/backup/orig/environment-linux.yml
+cp $FOLDER/setup/environment-linux-aarch64.yml $FOLDER/conf/backup/orig/environment-linux-aarch64.yml
+cp $FOLDER/setup/environment-win64.yml $FOLDER/conf/backup/orig/environment-win64.yml
+cp $FOLDER/install $FOLDER/conf/backup/orig/install
+cp $FOLDER/uninstall $FOLDER/conf/backup/orig/uninstall
+
 start_spinner '[+] setting up env name... '
 sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment.yml
 sed -i -e 's/name: hummingbot/name: '"$ENV_NAME"'/g' $FOLDER/setup/environment-linux.yml
@@ -147,6 +157,13 @@ sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/install
 sed -i -e 's/hummingbot/'"$ENV_NAME"'/g' $FOLDER/uninstall
 sleep 2
 stop_spinner $?
+
+cp $FOLDER/setup/environment.yml $FOLDER/conf/backup/mod/environment.yml
+cp $FOLDER/setup/environment-linux.yml $FOLDER/conf/backup/mod/environment-linux.yml
+cp $FOLDER/setup/environment-linux-aarch64.yml $FOLDER/conf/backup/mod/environment-linux-aarch64.yml
+cp $FOLDER/setup/environment-win64.yml $FOLDER/conf/backup/mod/environment-win64.yml
+cp $FOLDER/install $FOLDER/conf/backup/mod/install
+cp $FOLDER/uninstall $FOLDER/conf/backup/mod/uninstall
 
 work_start2=$SECONDS
 cd $FOLDER
